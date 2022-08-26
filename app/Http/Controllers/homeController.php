@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
-    public function __invoke(){
-        return "Bienvenidos a la página de inicio por controller. ";
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function __invoke(Request $request)
+    {
+        return view('agenda.index');
     }
 }

@@ -2,7 +2,8 @@
 
 
 
-use App\Http\Controllers\usuarioController;
+use App\Http\Controllers\agendaController;
+use App\Http\Controllers\homeController;
 use illuminate\Support\Facades\Route;
 
 /*
@@ -15,24 +16,12 @@ use illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('agenda',[agendaController::class, 'index'])->name('agenda.index');
 
-Route::get('/', [usuarioController::class,'index']);
+Route::get('agenda/create',[agendaController::class, 'create'])->name('agenda.create');
+Route::get('agenda/{agenda}',[agendaController::class, 'show'])->where(['agenda'=>'[A-za-z]+'])->name('agenda.show');
+Route::get('/', homeController::class);
 
-Route::get('users/create',function (){
-    return "Página de creación de usuario";
-});
 
-// Route::get('users/{nombre}',function ($nombre){
-//     return "Bienvenido Usuario: $nombre";
-// });
-// Route::get('users/{nombre}/{nacionalidad}',function ($nombre,$nacionalidad){
-//     return "Bienvenido Usuario: $nombre, nacionalidad: $nacionalidad";
-// });
-Route::get('users/{nombre}/{nacionalidad?}',function ($nombre,$nacionalidad=NULL){
-    if($nacionalidad){
-        return "Bienvenido Usuario: $nombre, nacionalidad: $nacionalidad";
-    }else{
-        return "Bienvenido Usuario: $nombre";
-    }
-});
 
+?>
