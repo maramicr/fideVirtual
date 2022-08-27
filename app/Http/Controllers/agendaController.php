@@ -55,27 +55,28 @@ class ClassAgenda
         }
         return $this;
     }
-}
 
-public function store(Request $request)
-{
-    $request->validate([
-    'nombreAlumno' => 'required',
-    'idProfesor' => 'required|integer',
-    'idDia' => 'required|integer',
-    'hora' => 'required|integer',
-    'asunto' => 'required' ]);
-    //se continua con las validaciones
-}
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombreAlumno' => 'required',
+            'idProfesor' => 'required|integer',
+            'idDia' => 'required|integer',
+            'hora' => 'required|integer',
+            'asunto' => 'required' ]);
+            //se continua con las validaciones
 
-    $agenda = new ClassAgenda();
-    $agenda->identificadorCita = 1;
-    // Este número debe venir de un dato de base de datos (autonumerico o identidad)
-    $agenda->nombreAlumno = $request->get('nombreAlumno');
-    $agenda->idProfesor = $request->get('idProfesor');
-    $agenda->idDia = $request->get('idDia');
-    $agenda->hora = $request->get('hora');
-    $agenda->asunto = $request->get('asunto');
-    // salvamos información en base de datos o repositorio
-    return view('agenda.show', ['agenda' => $agenda]);
-    //return view('agenda.index', compact('agenda'));
+            $agenda = new ClassAgenda();
+            $agenda->identificadorCita = 1;
+            // Este número debe venir de un dato de base de datos (autonumerico o identidad)
+            $agenda->nombreAlumno = $request->get('nombreAlumno');
+            $agenda->idProfesor = $request->get('idProfesor');
+            $agenda->idDia = $request->get('idDia');
+            $agenda->hora = $request->get('hora');
+            $agenda->asunto = $request->get('asunto');
+            // salvamos información en base de datos o repositorio
+            return view('agenda.show', ['agenda' => $agenda]);
+            return view('agenda.index', compact('agenda'));
+        }
+
+    }
