@@ -22,6 +22,7 @@ Route::get('agenda/create',[agendaController::class, 'create'])->name('agenda.cr
 Route::get('agenda/{agenda}',[agendaController::class, 'show'])->where(['agenda'=>'[A-za-z]+'])->name('agenda.show');
 Route::get('/', homeController::class);
 
+Route::post('agenda', [agendaController::class,'store'])->name('agenda.store');
 
 
 ?>
