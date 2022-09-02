@@ -4,23 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class agendaController extends Controller
-{
-    public function index()
-    {
-        return view('agenda.index');
-    }
-
-    public function create()
-    {
-        return view('agenda.create');
-    }
-
-    public function show($agenda)
-    {
-        return view('agenda.show', ['agenda' => $agenda]);
-    }
-}
 class ClassAgenda
 {
     private $identificadorCita;
@@ -39,21 +22,38 @@ class ClassAgenda
         $this->hora = 0;
         $this->asunto = "";
     }
-
+    // métodos mágicos o sobrecarga
     public function __get($property)
     {
-        if (property_exists($this, $property))
-        {
+        if (property_exists($this, $property)) {
             return $this->$property;
         }
     }
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-        {
+        if (property_exists($this, $property)) {
             $this->$property = $value;
         }
         return $this;
+    }
+
+}
+
+class agendaController extends Controller
+{
+    public function index()
+    {
+        return view('agenda.index');
+    }
+
+    public function create()
+    {
+        return view('agenda.create');
+    }
+
+    public function show($agenda)
+    {
+        return view('agenda.show', ['agenda' => $agenda]);
     }
 
     public function store(Request $request)
@@ -63,20 +63,21 @@ class ClassAgenda
             'idProfesor' => 'required|integer',
             'idDia' => 'required|integer',
             'hora' => 'required|integer',
-            'asunto' => 'required' ]);
-            //se continua con las validaciones
+            'asunto' => 'required'
+        ]);
+        //se continua con las validaciones
 
-            $agenda = new ClassAgenda();
-            $agenda->identificadorCita = 1;
-            // Este número debe venir de un dato de base de datos (autonumerico o identidad)
-            $agenda->nombreAlumno = $request->get('nombreAlumno');
-            $agenda->idProfesor = $request->get('idProfesor');
-            $agenda->idDia = $request->get('idDia');
-            $agenda->hora = $request->get('hora');
-            $agenda->asunto = $request->get('asunto');
-            // salvamos información en base de datos o repositorio
-            return view('agenda.show', ['agenda' => $agenda]);
-            return view('agenda.index', compact('agenda'));
-        }
-
+        $agenda = new ClassAgenda();
+        $agenda->identificadorCita = 1;
+        // Este número debe venir de un dato de base de datos (autonumerico o identidad)
+        $agenda->nombreAlumno = $request->get('nombreAlumno');
+        $agenda->idProfesor = $request->get('idProfesor');
+        $agenda->idDia = $request->get('idDia');
+        $agenda->hora = $request->get('hora');
+        $agenda->asunto = $request->get('asunto');
+        // salvamos información en base de datos o repositorio
+        return view('agenda.show', ['agenda' => $agenda]);
+        // return view('agenda.index', compact('agenda'));
     }
+
+}
