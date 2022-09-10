@@ -18,7 +18,7 @@ Route::get('/', homeController::class);
 Route::get('agenda',[agendaController::class, 'index'])->name('agenda.index');
 Route::get('agenda/create',[agendaController::class, 'create'])->name('agenda.create');
 Route::post('agenda', [agendaController::class,'store'])->name('agenda.store');
-Route::get('agenda/{agenda}',[agendaController::class, 'show'])->where(['agenda'=>'[A-za-z]+'])->name('agenda.show');
+Route::get('agenda/{agenda}',[agendaController::class, 'show'])->where(['agenda'=>'[0-9]+'])->name('agenda.show');
 
 
 

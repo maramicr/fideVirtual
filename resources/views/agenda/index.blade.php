@@ -11,4 +11,12 @@
 
 @section('content')
     <h1>!Bienvenido al registro de tutorías para el curso de PHP intermedio¡</h1>
+    <h2>Listado de tutorías solicitadas</h2>
+    <ul>
+        @foreach ($oTutorias as $oTutoria)
+            <li>
+                <a href="{{route('agenda.show', $oTutoria)}}">{{$oTutoria->asunto}}</a>
+            </li>
+        @endforeach
+    </ul>
 @endsection

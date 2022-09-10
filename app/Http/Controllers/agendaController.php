@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tutoria;
 use Illuminate\Http\Request;
 
 class ClassAgenda
@@ -43,7 +44,8 @@ class agendaController extends Controller
 {
     public function index()
     {
-        return view('agenda.index');
+        $oTutorias = tutoria::all();
+        return view('agenda.index', compact('oTutorias'));
     }
 
     public function create()
